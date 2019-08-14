@@ -24,5 +24,7 @@ export async function run(url, message) {
   }
 }
 
-
-
+run(
+  core.getInput('webhook'),
+  core.getInput('message')
+)
