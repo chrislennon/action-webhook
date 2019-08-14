@@ -1,9 +1,28 @@
-# JavaScript Action Template
+# action-webhook
 
-This template offers an easy way to get started writing a javascript action with TypeScript compile time support, unit testing with Jest and using the GitHub Actions Toolkit.
+A simple action to send a message to a webhook for example Slack, Teams, Discord...
 
-## Getting Started
+## Usage
 
-See the walkthrough located [here](https://github.com/actions/toolkit/blob/master/docs/javascript-action.md).
+Example
+````yaml
+name: Test Notification
 
-In addition to walking your through how to create an action, it also provides strategies for versioning, releasing and referencing your actions.
+on:
+  push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: chrislennon/action-webhook@v1
+        with:
+          message: >
+            A message from GitHub actions
+            More information here...
+          webhook: ${{ secrets.WEBHOOK_URL }}
+          debug: ${{ secrets.ACTIONS_STEP_DEBUG }}
+````
+
+For the `debug` option to work - you must also set the secret `ACTIONS_STEP_DEBUG` to `true` 

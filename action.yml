@@ -1,10 +1,7 @@
-name: 'Pull Request Review Notify'
-description: 'Get started with Node actions'
-author: 'GitHub'
+name: 'action-webhook'
+description: 'Send a message to a webhook'
+author: 'chrislennon'
 inputs:
-  platform:
-    description: 'target platform'
-    default: 'slack'
   message:
     description: 'message to send'
   webhook:
