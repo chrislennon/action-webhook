@@ -1,12 +1,28 @@
-import * as core from '@actions/core';
+import * as core from '@actions/core'
+import * as github from '@actions/github'
+import { IncomingWebhook } from '@slack/webhook'
+import { inspect } from 'util'
+if (core.getInput('debug') === 'true') core.debug(inspect(github.context, {showHidden: false, depth: null}))
 
-async function run() {
+export async function run(url, message) {
   try {
-    const myInput = core.getInput('myInput');
-    core.debug(`Hello ${myInput}`);
+    const webhook = new IncomingWebhook(url, {
+      icon_emoji: ':bowtie:',
+    })
+
+    const response = await webhook.send({
+      text: message,
+    })
+
+    let stdResponse = false
+    if (response.text == '1' || response.text === 'ok' )  stdResponse = true
+    return stdResponse
+
   } catch (error) {
-    core.setFailed(error.message);
+    core.error(error)
+    core.setFailed(error.message)
   }
 }
 
-run();
+
+
