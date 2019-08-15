@@ -32,9 +32,3 @@ export const handler = async (url: string, message: string) => {
   console.log('res', response)
   return response
 })()
-
-
-run(
-  core.getInput('webhook'),
-  core.getInput('message')
-)
