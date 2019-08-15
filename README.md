@@ -25,4 +25,6 @@ jobs:
           debug: ${{ secrets.ACTIONS_STEP_DEBUG }}
 ````
 
+The for v1 the `debug` option will output the [github.context](https://github.com/actions/toolkit/tree/master/packages/github) object of the event
+
 For the `debug` option to work - you must also set the secret `ACTIONS_STEP_DEBUG` to `true` 
